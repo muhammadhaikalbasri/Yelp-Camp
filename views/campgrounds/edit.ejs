@@ -2,34 +2,49 @@
     <div class="row">
         <h1 class="text-center">Edit Campground</h1>
         <div class="col-6 offset-3">
-            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="campground[title]" area-describedby
-                        value="<%= campground.title %>" />
+                        value="<%= campground.title %>" required/>
+                        <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div>
                     <label for="location" class="form-label">Location</label>
                     <input type="text" class="form-control" id="title" name="campground[location]"
-                        value="<%= campground.location %>" />
+                        value="<%= campground.location %>" required/>
+                        <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div>
                     <label for="image" class="form-label">Image Url</label>
                     <input type="text" class="form-control" id="image" name="campground[image]"
-                        value="<%= campground.image %>" />
+                        value="<%= campground.image %>" required/>
+                        <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Campground Price</label>
                     <div class="input-group ">
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" class="form-control" id="price" placeholder="0" aria-label="price"
-                            aria-describedby="price-label" value="<%= campground.price%>" name="campground[price]">
+                            aria-describedby="price-label" value="<%= campground.price%>" name="campground[price]" required/>
+                            <div class="valid-feedback">
+                        Looks good!
+                    </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" rows="3" placeholder="type here..."
-                        name="campground[description]"><%= campground.description %></textarea>
+                        name="campground[description]" required><%= campground.description %></textarea>
+                        <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3 mt-3 d-grid gap-2">
                     <button class="btn btn-info">Update Campground</button>
@@ -38,3 +53,25 @@
             <a href="/campgrounds/<%= campground._id %>" class="btn btn-warning">Back To Campground</a>
         </div>
     </div>
+
+        <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+    </script>
