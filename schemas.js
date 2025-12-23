@@ -1,6 +1,5 @@
 const Joi = require('joi');
-const review = require('./models/review');
-  module.exports.campgroundSchema = Joi.object({
+module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
       title: Joi.string().required(),
       price: Joi.number().required().min(0),
