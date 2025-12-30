@@ -45,8 +45,10 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 // adding user model to authenticate method provided by passport-local-mongoose
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
